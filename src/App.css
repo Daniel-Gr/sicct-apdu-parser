@@ -1,0 +1,35 @@
+.container {
+  max-width: 600px;
+  margin: 3rem auto;
+  font-family: sans-serif;
+  padding: 2rem;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  background: #f9f9f9;
+}
+
+input {
+  width: 100%;
+  font-size: 1.2em;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.result div {
+  margin-bottom: 1em;
+}
+
+.info {
+  font-size: 0.9em;
+  color: #666;
+}
+
+.instruction {
+  font-size: 1em;
+  color: green;
+  margin-top: 4px;
+}
+
+.error {
+  color: red;
+}
