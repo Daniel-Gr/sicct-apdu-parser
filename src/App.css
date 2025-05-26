@@ -1,45 +1,54 @@
 /* App.css */
 
-body {
+html, body {
+  height: 100%;
   margin: 0;
   padding: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f0f2f5;
 }
 
-.container {
-  max-width: 600px;
-  margin: 5rem auto;
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 2rem;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 90%;
+  max-width: 900px;
   background: white;
+  padding: 3rem;
   border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
   text-align: center;
   margin-bottom: 2rem;
-  font-size: 1.8rem;
+  font-size: 2rem;
   color: #333;
 }
 
 input {
   width: 100%;
-  padding: 12px 16px;
-  font-size: 1.1rem;
+  padding: 14px 18px;
+  font-size: 1.2rem;
   border: 1px solid #ccc;
   border-radius: 8px;
+  margin-bottom: 28px;
   box-sizing: border-box;
-  margin-bottom: 24px;
 }
 
 .result div {
   margin-bottom: 1.5rem;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 .info {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: #666;
   margin-top: 0.3rem;
 }
