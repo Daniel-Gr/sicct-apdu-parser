@@ -47,21 +47,42 @@ function App() {
     };
 
     const instructionSet = {
-        'A4': 'SELECT FILE',
-        'B0': 'READ BINARY',
-        'D6': 'UPDATE BINARY',
-        'B2': 'READ RECORD',
-        'DC': 'UPDATE RECORD',
-        '20': 'VERIFY (PIN)',
-        '24': 'CHANGE REFERENCE DATA',
-        '2C': 'RESET RETRY COUNTER',
-        '84': 'GET CHALLENGE',
-        '88': 'INTERNAL AUTHENTICATE',
-        '82': 'EXTERNAL AUTHENTICATE',
-        'CA': 'GET DATA',
-        'CB': 'GET DATA (complex)',
-        '2A': 'PERFORM SECURITY OPERATION (PSO)',
-        'C0': 'GET RESPONSE',
+        'A4': {
+            name: 'SELECT FILE',
+            context: 'Used to select DF/EF (e.g., EF.GDD, EF.VD) before READ BINARY.',
+        },
+        'B0': {
+            name: 'READ BINARY',
+            context: 'Reads data from selected EF. Common for insurance info (EF.VD).',
+        },
+        '20': {
+            name: 'VERIFY (PIN)',
+            context: 'Authenticates cardholder (CHV1) before secure operations.',
+        },
+        '84': {
+            name: 'GET CHALLENGE',
+            context: 'Used to initiate challenge-response authentication.',
+        },
+        '82': {
+            name: 'EXTERNAL AUTHENTICATE',
+            context: 'Completes challenge-response authentication using terminal’s signature.',
+        },
+        '88': {
+            name: 'INTERNAL AUTHENTICATE',
+            context: 'Used in digital signature processes.',
+        },
+        '2A': {
+            name: 'PERFORM SECURITY OPERATION (PSO)',
+            context: 'Executes signing or key agreement. Used with HBA/eGK in E-Rezept.',
+        },
+        'CA': {
+            name: 'GET DATA',
+            context: 'Fetches public certificates or status attributes.',
+        },
+        'C0': {
+            name: 'GET RESPONSE',
+            context: 'Retrieves remaining data when initial response is too short.',
+        }
     };
 
     const explain = {
@@ -193,7 +214,10 @@ function App() {
                                 <strong>{key}:</strong> {val.toString()}
                                 <div className="info">{explain[key]}</div>
                                 {key === 'INS' && instructionSet[val] && (
-                                    <div className="instruction">→ {instructionSet[val]}</div>
+                                    <div className="instruction">
+                                        → <strong>{instructionSet[val].name}</strong>
+                                        <div className="info">{instructionSet[val].context}</div>
+                                    </div>
                                 )}
                             </div>
                         )
