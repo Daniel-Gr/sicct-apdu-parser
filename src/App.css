@@ -65,3 +65,9 @@ input {
   margin-top: 1rem;
   text-align: center;
 }
+
+ label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0.5rem;
+}
