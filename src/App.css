@@ -71,3 +71,11 @@ input {
   display: block;
   margin-bottom: 0.5rem;
 }
+
+button:hover {
+  background-color: #e0e0e0;
+}
+
+button:active {
+  background-color: #d0d0d0;
+}

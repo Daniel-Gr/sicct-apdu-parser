@@ -1,6 +1,30 @@
 import { useState } from 'react';
 import './App.css';
 
+const apduSamples = [
+    {
+        label: 'SELECT FILE (eGK)',
+        value: '00A4040007A0000002471001',
+    },
+    {
+        label: 'GET CHALLENGE',
+        value: '0084000008',
+    },
+    {
+        label: 'READ BINARY',
+        value: '00B000000F',
+    },
+    {
+        label: 'GET DATA (Certificate)',
+        value: '00CA018200',
+    },
+    {
+        label: 'VERIFY PIN (CHV1)',
+        value: '0020008008', // CHV1 verify w/ 8-byte PIN
+    },
+];
+
+
 function App() {
     const [input, setInput] = useState('');
     const [responseInput, setResponseInput] = useState('');
@@ -125,6 +149,32 @@ function App() {
         <div className="container">
             <h1>SICCT / APDU Parser</h1>
 
+            <div style={{marginBottom: '1rem'}}>
+                <label>Sample APDUs:</label>
+                <div style={{display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginTop: '0.5rem'}}>
+                    {apduSamples.map((sample) => (
+                        <button
+                            key={sample.label}
+                            style={{
+                                padding: '6px 10px',
+                                border: '1px solid #ccc',
+                                borderRadius: '6px',
+                                background: '#f5f5f5',
+                                cursor: 'pointer',
+                                fontSize: '0.9rem'
+                            }}
+                            onClick={() => {
+                                setInput(sample.value);
+                                setParsed(parseAPDU(sample.value));
+                            }}
+                        >
+                            {sample.label}
+                        </button>
+                    ))}
+                </div>
+            </div>
+
+
             <label>Command APDU</label>
             <input
                 type="text"
@@ -151,7 +201,7 @@ function App() {
                 </div>
             ) : null}
 
-            <hr style={{ margin: '2rem 0' }} />
+            <hr style={{margin: '2rem 0'}}/>
 
             <label>Response APDU (SW1SW2)</label>
             <input
